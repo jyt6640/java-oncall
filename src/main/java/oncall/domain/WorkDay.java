@@ -11,15 +11,8 @@ public class WorkDay {
         this.month = month;
         this.date = date;
         this.day = day;
-        this.isHoliday = calculateHoliday(day, month, date);
         this.isLegalHoliday = isLegalHoliday(month, date);
-    }
-
-    private boolean calculateHoliday(Day day, int month, int date) {
-        if (day == Day.SATURDAY || day == Day.SUNDAY) {
-            return true;
-        }
-        return false;
+        this.isHoliday = isLegalHoliday || day == Day.SATURDAY || day == Day.SUNDAY;
     }
 
     private boolean isLegalHoliday(int month, int date) {
