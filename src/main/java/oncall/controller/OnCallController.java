@@ -1,10 +1,15 @@
 package oncall.controller;
 
-public class OnCallController {
-    private final InputController inputController;
+import oncall.view.OutputView;
 
-    public OnCallController(InputController inputController) {
+public class OnCallController {
+
+    private final InputController inputController;
+    private final OutputView outputView;
+
+    public OnCallController(InputController inputController, OutputView outputView) {
         this.inputController = inputController;
+        this.outputView = outputView;
     }
 
     public void run() {
