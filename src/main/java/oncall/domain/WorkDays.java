@@ -1,6 +1,7 @@
 package oncall.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WorkDays {
@@ -18,11 +19,20 @@ public class WorkDays {
         }
     }
 
+    public List<WorkDay> getWorkDays() {
+        return Collections.unmodifiableList(workDays);
+    }
+
     private int getDaysInMonth(int month) {
-        return switch (month) {
-            case 1,3,4,5,6,7,8,9,10,11,12 -> 31;
-            case 2 -> 28;
-            default -> throw new IllegalArgumentException("[ERROR] 유효하지 않은 달입니다.");
-        };
+        if (month == 2) {
+            return 28;
+        }
+        if (month == 4 || month == 6 || month == 9 || month == 11) {
+            return 30;
+        }
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+            return 31;
+        }
+        throw new IllegalArgumentException("[ERROR] 유효하지 않은 달입니다.");
     }
 }
