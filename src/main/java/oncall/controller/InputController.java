@@ -1,43 +1,67 @@
 package oncall.controller;
 
+import oncall.validator.InputValidator;
 import oncall.view.InputView;
+import oncall.view.OutputView;
 
 public class InputController {
 
     private final InputView inputView;
+    private final OutputView outputView;
+    private final InputValidator inputValidator;
 
-    public InputController(InputView inputView) {
+    public InputController(InputView inputView, OutputView outputView, InputValidator inputValidator) {
         this.inputView = inputView;
+        this.outputView = outputView;
+        this.inputValidator = inputValidator;
     }
 
     public String getWeekdayWorker() {
         while (true) {
-            return weekdayWorker();
+            try {
+                return weekdayWorker();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
         }
     }
 
     public String getHolidayWorker() {
         while (true) {
-            return holidayWorker();
+            try {
+                return holidayWorker();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
         }
     }
 
     public String getMonthAndDay() {
         while (true) {
-            return monthAndDay();
+            try {
+                return monthAndDay();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
         }
     }
 
     private String monthAndDay() {
-        return inputView.readMonthAndDay();
+        String input = inputView.readMonthAndDay();
+        inputValidator.validateMonthAndDay(input);
+        return input;
     }
 
     private String weekdayWorker() {
-        return inputView.readWeekdayWorker();
+        String input = inputView.readWeekdayWorker();
+        inputValidator.validateWeekday(input);
+        return input;
     }
 
     private String holidayWorker() {
-        return inputView.readHolidayWorker();
+        String input = inputView.readHolidayWorker();
+        inputValidator.validateHoliday(input);
+        return input;
     }
 
 }
