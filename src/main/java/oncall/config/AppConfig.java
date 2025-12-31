@@ -2,6 +2,7 @@ package oncall.config;
 
 import oncall.controller.InputController;
 import oncall.controller.OnCallController;
+import oncall.service.OnCallService;
 import oncall.validator.InputValidator;
 import oncall.view.InputView;
 import oncall.view.OutputView;
@@ -27,10 +28,15 @@ public class AppConfig {
         );
     }
 
+    public OnCallService onCallService() {
+        return new OnCallService();
+    }
+
     public OnCallController onCallController() {
         return new OnCallController(
                 inputController(),
-                outputView()
+                outputView(),
+                onCallService()
         );
     }
 
