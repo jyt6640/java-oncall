@@ -261,4 +261,6 @@ BUILD SUCCESSFUL in 0s
 - 과제 진행 및 제출
   방법은 [프리코스 과제 제출](https://docs.google.com/document/d/1cmg0VpPkuvdaetxwp4hnyyFC_G-1f2Gr8nIDYIWcKC8/edit?usp=sharing) 문서를
   참고한다.
-- **`docs/how-to-solve.md`에서 미션 해결 전략 문항에 답변을 필수로** 작성한다.   
+- **`docs/how-to-solve.md`에서 미션 해결 전략 문항에 답변을 필수로** 작성한다.
+
+1차 기능 완성 시간 : 1시간 53분
