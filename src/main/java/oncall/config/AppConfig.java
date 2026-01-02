@@ -2,6 +2,7 @@ package oncall.config;
 
 import oncall.controller.InputController;
 import oncall.controller.OnCallController;
+import oncall.service.GenerateScheduleService;
 import oncall.view.InputView;
 import oncall.view.OutputView;
 
@@ -24,10 +25,15 @@ public class AppConfig {
         );
     }
 
+    public GenerateScheduleService generateScheduleService() {
+        return new GenerateScheduleService();
+    }
+
     public OnCallController onCallController() {
         return new OnCallController(
                 inputController(),
-                outputView()
+                outputView(),
+                generateScheduleService()
         );
     }
 }

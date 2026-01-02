@@ -30,4 +30,8 @@ public class WorkDays {
         }
         throw new IllegalArgumentException("[ERROR] 유효하지 않은 달입니다.");
     }
+
+    public List<WorkDay> getWorkDays() {
+        return workDays;
+    }
 }
