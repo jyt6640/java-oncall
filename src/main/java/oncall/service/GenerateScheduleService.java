@@ -1,6 +1,7 @@
 package oncall.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,10 +38,19 @@ public class GenerateScheduleService {
     }
 
     private String assignHolidayWorker(String previousWorker, int index, List<String> workers) {
-        return workers.get(index % workers.size());
+        return assignWorker(previousWorker, index, workers);
     }
 
     private String assignWeekDayWorker(String previousWorker, int index, List<String> workers) {
+        return assignWorker(previousWorker, index, workers);
+    }
+
+    private String assignWorker(String previousWorker, int index, List<String> workers) {
+        String worker = workers.get(index % workers.size());
+        if (previousWorker == null || !previousWorker.equals(worker)) {
+            return worker;
+        }
+        Collections.swap(workers, index % workers.size(), (index + 1) % workers.size());
         return workers.get(index % workers.size());
     }
 }
